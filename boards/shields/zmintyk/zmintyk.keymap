@@ -1,0 +1,189 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define DEF 0
+#define NAVI 1
+#define MISC 2
+
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+      display-name = "Home";
+      bindings = <
+        &mo MISC  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5        &kp N6    &kp N7     &kp N8    &kp N9    &kp N0    &kp MINUS
+        &kp ESC   &kp Q     &kp W     &kp E     &kp R     &kp T         &kp Y     &kp U      &kp I     &kp O     &kp P     &kp EQUAL
+        &kp TAB   &kp A     &kp S     &kp D     &kp F     &kp G         &kp H     &kp J      &kp K     &kp L     &kp SEMI  &kp SQT
+        &kp LSHFT &kp Z     &kp X     &kp C     &kp V     &kp B         &kp N     &kp M      &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT
+                            &kp LCTRL &kp LALT  &kp LBKT                          &kp RBKT   &none     &none 
+                                      &kp LCMD  &kp SPACE &kp BSPC      &kp ENTER &kp SPACE  &kp DEL
+                                                &kp PG_UP &kp PG_DN     &to DEF   &sl NAVI
+      >;
+    };
+    nav_layer {
+      display-name = "Nav";
+      bindings = <
+        &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6          &kp F7       &kp F8    &kp F9        &kp F10 &none
+        &trans    &kp EXCL  &kp AT    &kp LT    &kp GT    &kp PIPE  &w_screen_left  &w_up_left   &w_up     &w_up_right   &none   &none 
+        &trans    &kp HASH  &kp DLLR  &kp LBRC  &kp RBRC  &kp TILDE &w_screen_right &w_left      &w_center &w_right      &none   &none 
+        &trans    &kp PRCNT &kp CARET &kp LPAR  &kp RPAR  &kp UNDER &none           &w_down_left &w_down   &w_down_right &none   &none 
+                            &trans    &trans    &none                               &none        &none     &none
+                                      &trans    &trans    &trans        &trans      &trans       &trans
+                                                &kp HOME  &kp END       &trans      &trans
+      >;
+    };
+    misc_layer {
+      display-name = "Misc";
+      bindings = <
+        &trans         &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4  &none    &none    &none    &none    &none    &studio_unlock
+        &bt BT_CLR     &none        &none        &none        &none         &none         &none    &none    &none    &none    &none    &none
+        &studio_unlock &none        &none        &none        &none         &none         &kp LEFT &kp DOWN &kp UP   &kp DOWN &none    &none
+        &none          &none        &none        &none        &none         &none         &none    &none    &none    &none    &none    &none
+                                    &trans       &trans       &none                                &none    &none    &none
+                                    &trans       &trans       &trans                               &trans   &trans   &trans
+                                                 &out OUT_USB &out OUT_BLE                         &trans   &trans
+      >;
+    };
+  };
+        
+  macros {
+    find: find {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LGUI>
+        , <&macro_tap &kp F>
+        , <&macro_release &kp LGUI>
+        ;
+      };
+    copy: copy {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LGUI>
+        , <&macro_tap &kp C>
+        , <&macro_release &kp LGUI>
+        ;
+      };
+    paste: paste {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LGUI>
+        , <&macro_tap &kp V>
+        , <&macro_release &kp LGUI>
+        ;
+      };
+    cut: cut {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LGUI>
+        , <&macro_tap &kp X>
+        , <&macro_release &kp LGUI>
+        ;
+      };
+    w_left: w_left {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp LEFT>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_right: w_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp RIGHT>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_up: w_up {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp UP>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_down: w_down {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp DOWN>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_center: w_center {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp RET>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_up_left: w_up_left {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp U>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_up_right: w_up_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp I>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_down_left: w_down_left {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp J>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_down_right: w_down_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT>
+        , <&macro_tap &kp K>
+        , <&macro_release &kp LCTRL &kp LALT>
+        ;
+      };
+    w_screen_right: w_screen_right {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT &kp LGUI>
+        , <&macro_tap &kp RIGHT>
+        , <&macro_release &kp LCTRL &kp LALT &kp LGUI>
+        ;
+      };
+    w_screen_left: w_screen_left {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press &kp LCTRL &kp LALT &kp LGUI>
+        , <&macro_tap &kp LEFT>
+        , <&macro_release &kp LCTRL &kp LALT &kp LGUI>
+        ;
+      };
+    };
+  };
