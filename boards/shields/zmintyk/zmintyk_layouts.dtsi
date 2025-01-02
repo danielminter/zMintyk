@@ -5,6 +5,7 @@
   chosen {
     zmk,kscan = &kscan;
     zmk,physical-layout = &zmintyk_physical_layout;
+    zmk,underglow = &led_strip;
   };
   zmintyk_physical_layout: zmintyk_physical_layout {
     compatible = "zmk,physical-layout";

@@ -1,26 +1,32 @@
 if SHIELD_ZMINTYK_LEFT
 
-config ZMK_KEYBOARD_NAME
-    default "zMintyk"
+  config ZMK_KEYBOARD_NAME
+      default "zMintyk"
 
-config ZMK_SPLIT_ROLE_CENTRAL
-    default y
+  config ZMK_SPLIT_ROLE_CENTRAL
+      default y
 
-config ZMK_STUDIO
-    default y
+  config ZMK_STUDIO
+      default y
 
-endif # SHIELD_SPLITKB_AURORA_CORNE_LEFT
+endif
 
 if SHIELD_ZMINTYK_LEFT || SHIELD_ZMINTYK_RIGHT
 
   config ZMK_SPLIT
       default y
 
-# config ZMK_RGB_UNDERGLOW
-#     select WS2812_STRIP
-#     select SPI
+  config ZMK_RGB_UNDERGLOW
+      default y
+      select WS2812_STRIP
+      select SPI
 
   config ZMK_DISPLAY
+    select LV_USE_CONT
+    select LV_FONT_MONTSERRAT_26
+    select LV_FONT_MONTSERRAT_16
+    select LV_USE_LABEL
+    select LV_USE_IMG
 
   if ZMK_DISPLAY
 
@@ -30,9 +36,9 @@ if SHIELD_ZMINTYK_LEFT || SHIELD_ZMINTYK_RIGHT
     config I2C
         default y
 
-    endif # ZMK_DISPLAY
+  endif # ZMK_DISPLAY
 
-    if LVGL
+  if LVGL
 
     config LV_Z_VDB_SIZE
         default 64

@@ -6,6 +6,7 @@
         zephyr,display = &oled;
         zmk,kscan = &kscan0;
         zmk,physical-layout = &zmintyk_physical_layout;
+        zmk,underglow = &led_strip;
     };
     kscan: kscan {
       compatible = "zmk, kscan-gpio-matrix";

@@ -9,6 +9,7 @@ features:
   - keys
   - display
   - studio
+  - underglow
 siblings:
   - zmintyk_left
   - zmintyk_right

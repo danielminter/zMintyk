@@ -2,10 +2,15 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
 
 #define DEF 0
 #define NAVI 1
 #define MISC 2
+
+&led_strip {
+  chain-length = <1>;
+};
 
 / {
   keymap {
@@ -14,7 +19,7 @@
     default_layer {
       display-name = "Home";
       bindings = <
-        &mo MISC  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5        &kp N6    &kp N7     &kp N8    &kp N9    &kp N0    &kp MINUS
+        &tog MISC  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5        &kp N6    &kp N7     &kp N8    &kp N9    &kp N0    &kp MINUS
         &kp ESC   &kp Q     &kp W     &kp E     &kp R     &kp T         &kp Y     &kp U      &kp I     &kp O     &kp P     &kp EQUAL
         &kp TAB   &kp A     &kp S     &kp D     &kp F     &kp G         &kp H     &kp J      &kp K     &kp L     &kp SEMI  &kp SQT
         &kp LSHFT &kp Z     &kp X     &kp C     &kp V     &kp B         &kp N     &kp M      &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT
@@ -38,8 +43,8 @@
     misc_layer {
       display-name = "Misc";
       bindings = <
-        &trans         &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4  &none    &none    &none    &none    &none    &studio_unlock
-        &bt BT_CLR     &none        &none        &none        &none         &none         &none    &none    &none    &none    &none    &none
+        &trans         &bt BT_SEL 0    &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4  &none    &none    &none    &none    &none    &studio_unlock
+        &bt BT_CLR     &rgb_ug RGB_TOG &rgb_ug RGB_EFF        &rgb_ug RGB_BRD        &rgb_ug RGB_BRI         &none         &none    &none    &none    &none    &none    &none
         &studio_unlock &none        &none        &none        &none         &none         &kp LEFT &kp DOWN &kp UP   &kp DOWN &none    &none
         &none          &none        &none        &none        &none         &none         &none    &none    &none    &none    &none    &none
                                     &trans       &trans       &none                                &none    &none    &none
